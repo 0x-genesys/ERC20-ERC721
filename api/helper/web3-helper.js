@@ -89,7 +89,7 @@ helper.subscribeToEvents = function(contractSocket) {
     .on('error', function(error) {
       console.log(error);
     });
-    
+
 }
 
 /*

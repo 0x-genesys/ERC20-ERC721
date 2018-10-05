@@ -1,5 +1,37 @@
 # ERC20
 
+## How to run:
+
+### Server:
+
+```
+npm i
+```
+
+```
+npm start
+```
+
+by default server connects to Ropsten network.
+To connect to local network make changes in  env_var.js
+
+
+### Deploy contracts:
+
+Ropsten :
+
+```
+truffle migrate --network ropsten
+```
+
+Local :
+
+```
+truffle migrate
+```
+
+## Description
+
 Time lock , easy HODL contract. Built on Solidity Contracts and Node.js
 
 Account holder can lock tokens at HodlContract.sol; Only one lock per user is maintained.
@@ -10,27 +42,17 @@ A) Retrieve the tokens before lock expires. In this case contract will consume a
 B) Retrieve the tokens after lock expires. In this case reward will be given.
 
 
-## Structure of Project:
+## Ropsten
 
-- api
-      - env
-          - env_var.js : for environment global vars.
+DummyErc20.sol : https://ropsten.etherscan.io/address/0xaa6a79362bdba736ab933e0db5377e661ff4da6a
+CreateHodlContract.sol : https://ropsten.etherscan.io/address/0xaa6a79362bdba736ab933e0db5377e661ff4da6a
+HodlContract.sol one instance : https://ropsten.etherscan.io/address/0x73A562eF3adE362887c69f21BfC1DCd1b74CD411
 
-      - helper
-          -  web3-helper.js : basic layer between controller and web3.js lib
-
-      - controller.js : All APIs
-
-      - index.js  : all routes
-
-- contracts
-    - erc20_project : For ERC20
-      - math 
+Many such instance of HodlContract can exist depending on how many users are creating hodl locks on their tokens
 
 
-
-Future Improvements:
+## Future Improvements:
 
 1. Minimum lock period.
 
-2. Gas on demand prices.
+2. Dynamic gas prices.
