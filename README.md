@@ -1,5 +1,20 @@
 # ERC20
 
+## Description
+
+Love Hodling? Don't trust yourself to not sell? This contract can help you.
+
+Time lock, easy HODL contract. Built on Solidity Contracts and Node.js
+
+Account holder can lock tokens at HodlContract.sol; Only one lock per user is maintained.
+User have two options after locking:
+
+A) Retrieve the tokens before lock expires. In this case contract will consume a fine.
+
+B) Retrieve the tokens after lock expires. In this case reward will be given.
+
+Only locking party can unlock their tokens.
+
 ## How to run:
 
 ### Server:
@@ -29,17 +44,6 @@ Local :
 ```
 truffle migrate
 ```
-
-## Description
-
-Time lock , easy HODL contract. Built on Solidity Contracts and Node.js
-
-Account holder can lock tokens at HodlContract.sol; Only one lock per user is maintained.
-User have two options after locking:
-
-A) Retrieve the tokens before lock expires. In this case contract will consume a fine.
-
-B) Retrieve the tokens after lock expires. In this case reward will be given.
 
 
 ## Ropsten
