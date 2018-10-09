@@ -92,7 +92,7 @@ truffle migrate
 
 *My test keys are left unchanged in Repo. Request you to change them if deploying your own instance.*
 
-*API that right on blockchain wait for network confirmation and hence can take
+*API that write on blockchain wait for network confirmation and hence can take
 upto 10 seconds to respond. Please keep ttl above 15 sec.*
 
 
