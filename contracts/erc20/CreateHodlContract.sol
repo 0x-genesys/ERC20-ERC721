@@ -80,7 +80,7 @@ contract CreateHodlContract {
   /*
   * checks for time and calls postRelease function of HodlContract
   */
-  function postReleaseContract() {
+  function postReleaseContract() public {
     address beneficiary = msg.sender;
     address erc20Address;
     uint256 releaseTime;

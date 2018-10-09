@@ -19,9 +19,9 @@ web3.setProvider(new web3.providers.HttpProvider('localhost:8545'));
 // Read the compiled contract code
 // Compile with
 // solc SampleContract.sol --combined-json abi,asm,ast,bin,bin-runtime,clone-bin,devdoc,interface,opcodes,srcmap,srcmap-runtime,userdoc > contracts.json
-let source = fs.readFileSync(config.file+"CreateHodlContract.json");
-// var source = JSON.parse(fs.readFileSync(file+"CreateHodlContract.json"));
-// var erc20ABI = JSON.parse(fs.readFileSync(file+"DummyERC20.json")).abi;
+let source = fs.readFileSync("contracts.json");
+var resultJson = JSON.parse(fs.readFileSync(file+"CreateHodlContract.json"));
+var erc20ABI = JSON.parse(fs.readFileSync(file+"DummyERC20.json")).abi;
 let contracts = JSON.parse(source)["contracts"];
 
 // ABI description as JSON structure

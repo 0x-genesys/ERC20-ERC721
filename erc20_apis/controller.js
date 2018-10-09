@@ -1,8 +1,8 @@
 var hodl = {};
 
 var Promise = require("bluebird");
-var helper = require('./helper/web3-helper.js');
-var config = require('./env/env_var.js');
+var helper = require('../web3/web3-helper.js');
+var config = require('../env/env_var.js');
 
 hodl.generateNewHodlContract = function (req, res) {
     var hodlContract = helper.getHodlContract();

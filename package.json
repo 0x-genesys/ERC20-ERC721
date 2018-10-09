@@ -13,5 +13,22 @@
     "openzeppelin-solidity": "1.12.0",
     "truffle-hdwallet-provider-privkey": "^0.3.0",
     "web3": "^1.0.0-beta.36"
-  }
+  },
+  "description": "## Description",
+  "main": "app.js",
+  "directories": {
+    "test": "test"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/0x-genesys/ERC20-ERC721.git"
+  },
+  "keywords": [],
+  "author": "karan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/0x-genesys/ERC20-ERC721/issues"
+  },
+  "homepage": "https://github.com/0x-genesys/ERC20-ERC721#readme"
 }

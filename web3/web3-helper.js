@@ -19,11 +19,14 @@ var file = config["file"];
 var resultJson = JSON.parse(fs.readFileSync(file+"CreateHodlContract.json"));
 var erc20ABI = JSON.parse(fs.readFileSync(file+"DummyERC20.json")).abi;
 var abi = resultJson.abi;
+var ERC721DemurrageABI = JSON.parse(fs.readFileSync(file+"Demurrage.json")).abi;
 var address = config['hodl_contract_address'];
 var erc20Address = config['dummy_erc20_address'];
+var ERC721DemurrageAddress = config['demurrage_contract_address'];
 var contractHttp;
 var ERC20DummyContract;
 var ERC20DummyContractSocket;
+var ERC721DemurrageContract;
 var contractSocket;
 
 //FUNCTIONS:---->
@@ -52,6 +55,15 @@ helper.getERC20DummyContract = function() {
       helper.subscribeToEventsErc20(ERC20DummyContractSocket);
     }
     return ERC20DummyContract;
+}
+
+helper.getERC721DemurrageContract = function() {
+  if(!ERC721DemurrageContract) {
+    //Params : ABI, Address where deployed, default tx object values used in methods
+    ERC721DemurrageContract = new web3.eth.Contract(ERC721DemurrageABI, ERC721DemurrageAddress);
+    // ERC721DemurrageContractSocket = new web3Socket.eth.Contract(erc20ABI, erc20Address);
+  }
+  return ERC721DemurrageContract;
 }
 
 helper.subscribeToEventsErc20 = function(contract) {
@@ -147,12 +159,12 @@ helper.makeSendTx = function(tx, privateKey, successEvent, failureEvent) {
             tran.on('transactionHash', hash => {
               console.log('hash');
               console.log(hash);
-              successEvent(hash);
             });
 
             tran.on('receipt', receipt => {
               console.log('receipt');
               console.log(receipt);
+              successEvent({"receipt": receipt});
             });
 
             tran.on('error', error => {
@@ -180,6 +192,10 @@ helper.makeTransactionObject = function(to, encodedABI,
 
 helper.convertToWei = function(value) {
   return web3.utils.toWei(value, "ether");
+}
+
+helper.convertToCents = function(value) {
+  return value * 100;
 }
 
 
