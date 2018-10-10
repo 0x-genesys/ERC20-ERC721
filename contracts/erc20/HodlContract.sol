@@ -1,10 +1,14 @@
 pragma solidity ^0.4.24;
 
 import "./tokens/SafeERC20.sol";
+import "./math/SafeMath.sol";
 
 contract HodlContract {
 
+    uint multiplier = 10 ** 18;
+
     using SafeERC20 for IERC20;
+    using SafeMath for uint256;
 
     // ERC20 basic token contract being held
     IERC20 private _token;
@@ -50,8 +54,9 @@ contract HodlContract {
       return _releaseTime;
     }
 
-    function allInfo() public view returns(address, address, uint256) {
-      return (_token, _beneficiary, _releaseTime);
+    function allInfo() public view returns(address, address, uint256, uint256) {
+
+      return (_token, _beneficiary, _releaseTime, _token.balanceOf(address(this)).div(multiplier));
     }
 
     /**
@@ -70,8 +75,8 @@ contract HodlContract {
 
       uint256 timeGainedinSeconds = block.timestamp - _releaseTime;
 
-      // 1 wei per 200 second
-      uint256 weiGained  = timeGainedinSeconds * 1;
+      // 1 wei per 1 second per 1 token held
+      uint256 weiGained  = _token.balanceOf(address(this)).div(multiplier) * timeGainedinSeconds * 1;
 
       //send wei gained else throw if error
       require(_beneficiary.call.gas(210000).value(weiGained)());
@@ -94,7 +99,8 @@ contract HodlContract {
 
       uint256 timeEarly = _releaseTime - block.timestamp;
 
-      uint256 weiToBeFined  = timeEarly * 1; // 1 wei per 1 second
+      // 1 wei per 1 second per 1 token held
+      uint256 weiToBeFined  =  _token.balanceOf(address(this)).div(multiplier) * timeEarly * 1;
 
       require(msg.value >= weiToBeFined);
 

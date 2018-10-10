@@ -55,13 +55,15 @@ hodl.getHodlContractAddress = function(req, res) {
              var hodlContractAddress = result["2"];
              var expiring = result["3"];
              var blockTimestamp = result["4"];
+             var balance = result["5"]
              var response = {
                "erc20Address": erc20Address,
                "beneficiary": beneficiary,
                "hodlContractAddress": hodlContractAddress,
                "expiring": expiring,
                "blockTimestamp": blockTimestamp,
-               "time_left": parseInt(expiring) - parseInt(blockTimestamp)
+               "time_left": parseInt(expiring) - parseInt(blockTimestamp),
+               "amount_to_be_paid_in_wei": (parseInt(expiring) - parseInt(blockTimestamp)) * parseInt(balance)
              }
              console.log(">>>")
              res.status(200).send(JSON.stringify(response));
@@ -138,7 +140,7 @@ hodl.transferERC20Tokens = function(req, res) {
   var ERC20DummyContract = helper.getERC20DummyContract();
   var privateKey = req.body.private_key; //private key of the account
   var value = req.body.value;
-  var to = req.body.to
+  var to = req.body.hodl_contract_address;
 
   console.log(to)
   console.log(privateKey)
