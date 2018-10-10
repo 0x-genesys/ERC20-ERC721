@@ -36,6 +36,12 @@ Many such instance of HodlContract can exist depending on how many users are
 creating hodl locks on their tokens.
 
 
+## API DOCUMENTATION (IMP):
+
+https://documenter.getpostman.com/view/3718257/RWgp2f1b
+
+
+
 
 
 # DEMURRAGE ERC721
@@ -62,6 +68,13 @@ day.
 Demurrage.sol :
 
 https://ropsten.etherscan.io/address/0x3a2f923e8d93572599a35070c6a07d082b1958e3
+
+## API DOCUMENTATION (IMP):
+
+https://documenter.getpostman.com/view/3718257/RWgp2f1f
+
+
+
 
 # How to run:
 
